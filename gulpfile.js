@@ -4,6 +4,7 @@ var gulp = require('gulp'),
    rename = require('gulp-rename');
    minifyCss = require('gulp-minify-css');
    minifyHTML = require('gulp-minify-html');
+   jshint = require('gulp-jshint');
 
 gulp.task('buildDist', function() {
   gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css"])
@@ -28,4 +29,11 @@ gulp.task('minifyCSS', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['buildDist', 'minify-html', 'minifyJS', 'minifyCSS']);
+gulp.task('lint', function() {
+  return gulp.src(['./src/**/*.js', '!./src/js/lib/*.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+  
+
+gulp.task('build', ['lint', 'buildDist', 'minify-html', 'minifyJS', 'minifyCSS']);
