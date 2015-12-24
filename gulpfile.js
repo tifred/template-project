@@ -8,7 +8,7 @@ var gulp = require('gulp'),
    concat = require('gulp-concat');
 
 gulp.task('buildDist', function() {
-  gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css"])
+  gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css", "!./src/images_src/**"])
     .pipe(gulp.dest("./dist"));
 });
 
