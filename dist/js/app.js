@@ -1,1 +1,1 @@
-var x=1;
+var x=1;1===x&&console.log("bad equal");var y=$(".header-row");console.log("foo");

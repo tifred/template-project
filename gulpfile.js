@@ -5,6 +5,7 @@ var gulp = require('gulp'),
    minifyCss = require('gulp-minify-css');
    minifyHTML = require('gulp-minify-html');
    jshint = require('gulp-jshint');
+   concat = require('gulp-concat');
 
 gulp.task('buildDist', function() {
   gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css"])
