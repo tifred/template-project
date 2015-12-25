@@ -231,12 +231,26 @@ var Series = function(data) {
                 this.artImgPath + "-220.jpg 220w," +
                 this.artImgPath + "-165.jpg 165w,";
   this.artSizes = "(min-width: 768px) 58vw, 100vw";
-
 };
 
-// Gallery constructor.
-// Given series name, finds right element in array. 
-// Loops through images array, building variables.
+var Image = function(imageData, seriesName) {
+  this.seriesName = seriesName;
+  this.img = imageData.img;
+  this.captionText = imageData.captionText;
+  this.altText = imageData.altText;
+
+  this.imgPath = "images/" + this.seriesName + "/" + this.img;
+  this.src = this.imgPath + "-640.jpg";
+  this.srcset = this.imgPath + "-1000.jpg 1000w," +
+                this.imgPath + "-640.jpg 640w," +
+                this.imgPath + "-540.jpg 540w," +
+                this.imgPath + "-440.jpg 440w," +
+                this.imgPath + "-330.jpg 330w," +
+                this.imgPath + "-270.jpg 270w," +
+                this.imgPath + "-220.jpg 220w," +
+                this.imgPath + "-165.jpg 165w,";
+  this.sizes = "(min-width: 768px) 100vw, 100vw";
+};
 
 /* the viewmodel */
 
@@ -253,12 +267,15 @@ var ViewModel = function() {
   this.artSizes = ko.observable("");
   this.artAltText = ko.observable("");
   this.artCaptionText = ko.observable("");
+  
+  this.currentSeries = ko.observable("");
 
   /* create empty mainView, articleView array and galleryView array */
   this.mainViewRowOne = [];
   this.mainViewRowTwo = [];
   this.articleView = {};
-  this.galleryView = [];
+  // this.galleryView = [];
+  this.galleryView = ko.observableArray();
 
   /* populate mainView, a normal array that holds instances of Series */
   // the first foreach loops through that and builds html to show main view 
@@ -282,7 +299,31 @@ var ViewModel = function() {
     self.artAltText(series.artAltText);
     self.artCaptionText(series.artCaptionText);
 
+    self.currentSeries(series.seriesName);
+
     self.articleIsVisible(true);
+  };
+
+  self.backToMain = function() {
+    self.articleIsVisible(false);
+    self.mainIsVisible(true);
+    self.currentSeries("");
+  }; 
+
+  self.showGallery = function() {
+    self.galleryView.removeAll();
+    initialSeries.forEach(function(series) {
+      if (series.seriesName === self.currentSeries()) {
+        series.images.forEach(function(image) {
+          self.galleryView.push(new Image(image, series.seriesName));
+        });
+      };
+    });
+
+    console.log(self.galleryView().length);
+    console.log(self.galleryView()[0]);
+    self.articleIsVisible(false);
+    self.galleryIsVisible(true);
   };
 
 };
