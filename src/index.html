@@ -12,23 +12,50 @@
   <script src="js/lib/knockout-3.2.0.js"></script>
 </head>
 <body>
+  <!-- START NAV -->
+
+        <nav class="navbar navbar-default visible-xs-block" id="navbar-in-mobile">
+          <div class="container" id="navbar-in-mobile">
+
+            <div class="navbar-header" id="navbar-in-mobile">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- a class="navbar-brand" href="#">WebSiteName</a -->
+              <h2 class="text-center" id="navbar-in-mobile">TRACY JOHNSTON ERSATZ</h2>
+              <h4 class="text-center" id="subheader-in-mobile">PHOTOGRAPHY & PROSE</h4>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li data-bind="click: showAboutme"><a href="#">About Me</a></li>
+                <li data-bind="click: showContact"><a href="#">Contact</a></li>
+                <li><a href="#">Articles</a></li>
+                <li data-bind="click: backToMain"><a href="#">Home</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
 
   <!-- START CONTAINER-->
 
   <div class="container">
 
-    <header class="row header-row">
+    <header class="row header-row hidden-xs">
         <h2 class="text-center">TRACY JOHNSTON ERSATZ</h2>
         <h4 class="text-center">PHOTOGRAPHY & PROSE</h4>
     </header>
 
     <!-- START NAV -->
 
-    <nav class="row nav-row">
+    <nav class="row nav-row hidden-xs">
       <div class="col-sm-2"></div>
-      <div class="col-sm-2">Home</div>
-      <div class="col-sm-2">About Me</div>
-      <div class="col-sm-2">Contact</div>
+      <div class="col-sm-2" data-bind="click: backToMain">Home</div>
+      <div class="col-sm-2" data-bind="click: showAboutme">About Me</div>
+      <div class="col-sm-2"  data-bind="click: showContact">Contact</div>
       <div class="col-sm-2">Articles</div>
       <div class="col-sm-2"></div>
     </nav>
@@ -67,7 +94,6 @@
           <img class="img-responsive" data-bind="attr: { src: artSrc, srcset: artSrcset, sizes: artSizes, alt: artAltText }, click: showGallery">
           <figcaption data-bind="text: artCaptionText"></figcaption>
         </figure>
-        <button class="text-right" data-bind="click: backToMain">Back To Main</button>
         <div data-bind="html: artTextTwo"></div>
       </div> 
     </section>    
@@ -104,9 +130,62 @@
 	</a>
       </div>
 
-
-
     </section>  
+
+    <!-- ABOUT ME -->
+
+    <section class="row" data-bind="visible: aboutmeIsVisible">
+      <div class="col-sm-7">
+        <p><strong>&nbsp;MY PASSION FOR PHOTOGRAPHY DEVELOPED LATE IN LIFE.</strong>&nbsp; After getting a master's degree in Journalism from UC Berkeley I was a freelance writer, and magazine editor, publishing feature stories in national magazines (see list below).&nbsp; In l992 I wrote an adventure travel book (still in print) about a river trip that turned into a nightmare: “Shooting the Boh: One Woman's Voyage Down The Wildest River in Borneo."&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp; While writing my second book, "Peace In The House," about how polygamous marriages work in Northern Nigeria, I got a permanent case of repetitive stress in my hands. No more writing books. Not much writing at all. What to do?&nbsp; Fortunately I found an answer: Keep on exploring little known places; keep on telling those stories,&nbsp; but do it now with a camera. This has allowed me to continue my adventures while learning to see things in a new way — up close and visual.&nbsp; In 2010, I went back to Nigeria as a photographer, but since then I've been sticking closer to home — taking road trips but mostly exploring my own backyard: West Oakland.</p>
+      <p><em>*Published in New York Times Magazine, Village Voice, New West, Playboy, Ms., Redbook, Vogue, Cosmopolitan, Harper’s Bazaar, California, and many local newspapers and magazines. *Managing Editor of The Los Angeles Weekly; Northern California editor of California Magazine; Editor of The Berkeley Monthly; and Transitional Editor of San Francisco Magazine. </em></p>
+      </div>
+      <div class="col-sm-5">
+        <figure>
+          <img class="img-responsive"
+               src="images/extraPages/aboutme-640.jpg"
+               srcset="images/extraPages/aboutme-1000.jpg 1000w,
+                       images/extraPages/aboutme-640.jpg 640w,
+                       images/extraPages/aboutme-540.jpg 540w,
+                       images/extraPages/aboutme-440.jpg 440w,
+                       images/extraPages/aboutme-330.jpg 330w,
+                       images/extraPages/aboutme-270.jpg 270w,
+                       images/extraPages/aboutme-220.jpg 220w,
+                       images/extraPages/aboutme-165.jpg 165w"
+               sizes="(min-width: 768px) 60vw, 100vw"
+               alt="Woman With Camera">
+          <figcaption>Photo By Reed Cooper</figcaption>
+        </figure>
+      </div> 
+    </section>    
+
+
+    <!-- CONTACT -->
+
+    <section class="row" data-bind="visible: contactIsVisible">
+      <div class="col-sm-7">
+        <figure>
+          <img class="img-responsive"
+               src="images/extraPages/contact-640.jpg"
+               srcset="images/extraPages/contact-1000.jpg 1000w,
+                       images/extraPages/contact-640.jpg 640w,
+                       images/extraPages/contact-540.jpg 540w,
+                       images/extraPages/contact-440.jpg 440w,
+                       images/extraPages/contact-330.jpg 330w,
+                       images/extraPages/contact-270.jpg 270w,
+                       images/extraPages/contact-220.jpg 220w,
+                       images/extraPages/contact-165.jpg 165w"
+               sizes="(min-width: 768px) 60vw, 100vw"
+               alt="Woman Smiling">
+          <figcaption></figcaption>
+        </figure>
+      </div> 
+      <div class="col-sm-5">
+        <p>Contact me at tracyjohnston@comcast.net.</p>
+      </div>
+    </section>    
+
+
+
 
   </div> <!-- END CONTAINER -->
 

@@ -3,7 +3,8 @@
 var initialSeries = [
   {
     seriesName: "skate",
-    mainImgIdx: 1,
+    seriesCaption: "West Oakland\'s controversial skateboard park",
+    mainImgIdx: 0,
     artImgIdx: 2,
     artTitle: "LIFE SUCKS",
     artText: '<p><strong>I HAPPENED UPON THIS SKATEPARK </strong>when it was being built on a long abandoned lot in West Oakland, right next to a freeway and the warehouse where I was photographing Bob Rosenberg (see my West Oakland gallery). There turned out to be no permissions, no permits,&nbsp; and no one getting paid. It was part of a DIY,&nbsp; Build-a-Skatepark movement that started in Portland Oregon in l990, with the cost of materials donated by skateboard magazines and sponsors. The idea is for skaters and their supporters in the construction business to build a park fast (this one in just under 5 months), open it up for public use (put a hole in the chain-link fence the city puts up) and hope the city doesn\'t tear it down.</p><p>I loved watching the skaters, of course, but ended up being more interested in a culture I hadn\'t really seen as a girl and an only child. There isn\'t really a word for it other than "testosterone," or "boys will be boys." In the skating world it\'s mostly alienated urban kids whose mottos are "freedom" and "life sucks." They want to fall hard, feel free, skate well and get high. I found a brotherhood of kids feeling strong and brave and happy together,&nbsp; if only for a time.</p>',
@@ -28,6 +29,7 @@ var initialSeries = [
   },
   {
     seriesName: "westoak",
+    seriesCaption: "Life in West Oakland series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "WEST OAKLAND",
@@ -53,6 +55,7 @@ var initialSeries = [
   },
   {
     seriesName: "homeless",
+    seriesCaption: "Homesless series: West Oakland and Salinas",
     mainImgIdx: 2,
     artImgIdx: 1,
     artTitle: "AMONG THE HOMELESS",
@@ -61,23 +64,24 @@ var initialSeries = [
     images: [
       {
         img: "homeless_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "homeless_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "homeless_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
   },
   {
     seriesName: "rust",
+    seriesCaption: "Rust series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "RUST AMONG US",
@@ -86,23 +90,24 @@ var initialSeries = [
     images: [
       {
         img: "rust_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "rust_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "rust_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
   },
   {
     seriesName: "road",
+    seriesCaption: "On the road.",
     mainImgIdx: 1,
     artImgIdx: 2,
     artTitle: "ON THE ROAD",
@@ -111,23 +116,24 @@ var initialSeries = [
     images: [
       {
         img: "road_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "road_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "road_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
   },
   {
     seriesName: "easter",
+    seriesCaption: "Easter Sunday in West Oakland",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "AT THE CHURCH",
@@ -136,23 +142,24 @@ var initialSeries = [
     images: [
       {
         img: "easter_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "easter_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "easter_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
   },
   {
     seriesName: "kano",
+    seriesCaption: "Kano, Nigeria, 2010",
     mainImgIdx: 1,
     artImgIdx: 0,
     artTitle: "IN KANO",
@@ -161,23 +168,24 @@ var initialSeries = [
     images: [
       {
         img: "kano_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "kano_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "kano_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
   },
   {
     seriesName: "grainmkt",
+    seriesCaption: "Grain market, Kano, Nigeria",
     mainImgIdx: 2,
     artImgIdx: 1,
     artTitle: "AT THE GRAIN MARKET",
@@ -186,17 +194,17 @@ var initialSeries = [
     images: [
       {
         img: "grainmkt_0",
-        captionText: "People in Oaktown",
+        captionText: "Sample Text",
         altText: "People in street"
       },
       {
         img: "grainmkt_1",
-        captionText: "His name is Al",
+        captionText: "Sample Text",
         altText: "Man in car"
       },
       {
         img: "grainmkt_2",
-        captionText: "To the store",
+        captionText: "Sample Text",
         altText: "People in store"
       }
     ]
@@ -205,9 +213,10 @@ var initialSeries = [
 
 var Series = function(data) {
   this.seriesName = data.seriesName;
+  this.seriesCaption = data.seriesCaption;
 
   this.mainImg = data.images[data.mainImgIdx].img;
-  this.mainCaptionText = data.images[data.mainImgIdx].captionText;
+  this.mainCaptionText = this.seriesCaption;
   this.mainAltText = data.images[data.mainImgIdx].altText;
 
   this.artImg = data.images[data.artImgIdx].img;
@@ -269,6 +278,9 @@ var ViewModel = function() {
   this.mainIsVisible = ko.observable(true);
   this.articleIsVisible = ko.observable(false);
   this.galleryIsVisible = ko.observable(false);
+  this.aboutmeIsVisible = ko.observable(false);
+  this.contactIsVisible = ko.observable(false);
+
   this.artTitle = ko.observable("");
   this.artText = ko.observable("");
   this.artTextTwo = ko.observable("");
@@ -292,9 +304,9 @@ var ViewModel = function() {
 
   initialSeries.forEach(function(series, index) {
     if (index < 4) {
-      self.mainViewRowOne.push(new Series(series))
+      self.mainViewRowOne.push(new Series(series));
     } else {
-      self.mainViewRowTwo.push(new Series(series))
+      self.mainViewRowTwo.push(new Series(series));
     }
   });
 
@@ -317,6 +329,9 @@ var ViewModel = function() {
 
   self.backToMain = function() {
     self.articleIsVisible(false);
+    self.aboutmeIsVisible(false);
+    self.galleryIsVisible(false);
+    self.contactIsVisible(false);
     self.mainIsVisible(true);
     self.currentSeries("");
   }; 
@@ -328,14 +343,29 @@ var ViewModel = function() {
         series.images.forEach(function(image) {
           self.galleryView.push(new Image(image, series.seriesName));
         });
-      };
+      }
     });
 
-    console.log(self.galleryView().length);
-    console.log(self.galleryView()[0]);
     self.articleIsVisible(false);
     self.galleryIsVisible(true);
   };
+
+  self.showAboutme = function() {
+    self.mainIsVisible(false);
+    self.articleIsVisible(false);
+    self.galleryIsVisible(false);
+    self.contactIsVisible(false);
+    self.aboutmeIsVisible(true);
+  }; 
+
+  self.showContact = function() {
+    self.mainIsVisible(false);
+    self.articleIsVisible(false);
+    self.galleryIsVisible(false);
+    self.aboutmeIsVisible(false);
+    self.contactIsVisible(true);
+  }; 
+    
 
 };
 ko.applyBindings(new ViewModel());
