@@ -1,65 +1,29 @@
 'use strict';
 
 /*
-   The mainImgIdx should always be 0.
-   The 0th image should always have "MAIN" in the name.
-   All the MAIN images should have an identical width to height ratio.
-   e.g. 3:2.
-   These all happen to be 1000 to 667.
+   initialSeries is the model for each Series.
+   It is an array of objects; each object is a series.
+
+   Each series includes:
+     A picture for the main page.
+     An article with text and a picture.
+     A gallery of many images.
+
+   All images for the series are in the "images" array of each series object.
+   The first image should be the main image and have "MAIN" in its name.
+   All MAIN images should have an identical picture ratio.  e.g. 3:2.
+   It is probably good that they all be the same dimensions: e.g. 1000 x 667.
+
    Why? Because they will all appear in a grid on the main page.
    Using the same size/ratio makes them line up nicely.
    This may require cropping the original images.
 
-   Other images can be at different ratios   
-   In fact, one might want to include an uncropped version of the MAIN image.
+   All other images are used in the article and gallery pages.
+   Use the "artImgIdx" number to pick which image should be in the article.
+   The images do not need to have a uniform size or picture ratio.
+   One might want to include an uncropped version of the MAIN image
    in the "images" array.
 */
-
-var extraPages = [
-  {
-    pageName: "AboutMe",
-    textCol1: '<p><strong>&nbsp;MY PASSION FOR PHOTOGRAPHY DEVELOPED LATE IN LIFE.</strong>&nbsp; After getting a master\'s degree in Journalism from UC Berkeley I was a freelance writer, and magazine editor, publishing feature stories in national magazines (see list below).&nbsp; In l992 I wrote an adventure travel book (still in print) about a river trip that turned into a nightmare: “Shooting the Boh: One Woman\'s Voyage Down The Wildest River in Borneo."&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp; While writing my second book, "Peace In The House," about how polygamous marriages work in Northern Nigeria, I got a permanent case of repetitive stress in my hands. No more writing books. Not much writing at all. What to do?&nbsp; Fortunately I found an answer: Keep on exploring little known places\; keep on telling those stories,&nbsp; but do it now with a camera. This has allowed me to continue my adventures while learning to see things in a new way — up close and visual.&nbsp; In 2010, I went back to Nigeria as a photographer, but since then I\'ve been sticking closer to home — taking road trips but mostly exploring my own backyard: West Oakland.</p><p><em>*Published in New York Times Magazine, Village Voice, New West, Playboy, Ms., Redbook, Vogue, Cosmopolitan, Harper’s Bazaar, California, and many local newspapers and magazines. *Managing Editor of The Los Angeles Weekly; Northern California editor of California Magazine; Editor of The Berkeley Monthly; and Transitional Editor of San Francisco Magazine. </em></p>',
-    textCol2: "",
-    images: [
-      {
-	img: "aboutme",
-	captionText: "Photo by Reed Cooper",
-	alt: "Woman with Camera"
-      }
-    ]
-  },
-  {
-    pageName: "Contact",
-    textCol1: '<p>Contact me at tracyjohnston@comcast.net.</p>',
-    textCol2: "",
-    images: [
-      {
-	img: "contact",
-	captionText: "",
-	alt: "Woman Smiling"
-      }
-    ]
-  },
-  {
-    pageName: "LongArtMain",
-    title1: "DESERT RATS",
-    title2: "LA VIDA LOCA",
-    textCol1: '<p>DOWN CARSON pass from San Francisco came the urban woman in a Japanese car filled with Diet Cokes and Western history books, country music filling up every sensual space but the view, which at the moment was beyond the grasp of anything mortal: a vast, high desert stretching east to Utah filled with mountain ranges dropped from the cosmos like rumpled pieces of silk. Dry lake beds appeared like mirages; great swirling circles in chalk.&nbsp; The woman headed into it all awash in melodrama...<br><br><a href="/magazine-writing-1-2-1">click to continue reading</a></p>',
-    textCol2: '<p>Spider had his melancholy expression, the one that always made Loca forgive him. His sable brown eyes looked so sympathetic and sad that she forgot about the ways he treated her bad, the times he messed up on her with other girls, or went out shooting with his home boys. She was feeling sorry for him even before he had the hallucinations. He was a <em>vato loco</em>, a crazy guy in the East Los Angeles barrios , but it was because he didn\'t give a fuck about...<br><br><a href="/la-vida-loca">click to continue reading</a></p>',
-    images: [
-      {
-	img: "desertman",
-	captionText: "",
-	alt: "Older Man Smiling"
-      },
-      {
-	img: "loco",
-	captionText: "",
-	alt: "Kids on the street"
-      }
-    ]
-  }
-]
 
 var initialSeries = [
   {
@@ -312,71 +276,142 @@ var initialSeries = [
   },
 ];
 
+/*
+  extraPages is the model for the AboutMe, Contact, and Articles pages.
+  It is an array of objects; each object is a page.
+
+  Pages include text and at least one picture.
+*/
+
+
+var extraPages = [
+  {
+    pageName: "AboutMe",
+    textCol1: '<p><strong>&nbsp;MY PASSION FOR PHOTOGRAPHY DEVELOPED LATE IN LIFE.</strong>&nbsp; After getting a master\'s degree in Journalism from UC Berkeley I was a freelance writer, and magazine editor, publishing feature stories in national magazines (see list below).&nbsp; In l992 I wrote an adventure travel book (still in print) about a river trip that turned into a nightmare: “Shooting the Boh: One Woman\'s Voyage Down The Wildest River in Borneo."&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp; While writing my second book, "Peace In The House," about how polygamous marriages work in Northern Nigeria, I got a permanent case of repetitive stress in my hands. No more writing books. Not much writing at all. What to do?&nbsp; Fortunately I found an answer: Keep on exploring little known places\; keep on telling those stories,&nbsp; but do it now with a camera. This has allowed me to continue my adventures while learning to see things in a new way — up close and visual.&nbsp; In 2010, I went back to Nigeria as a photographer, but since then I\'ve been sticking closer to home — taking road trips but mostly exploring my own backyard: West Oakland.</p><p><em>*Published in New York Times Magazine, Village Voice, New West, Playboy, Ms., Redbook, Vogue, Cosmopolitan, Harper’s Bazaar, California, and many local newspapers and magazines. *Managing Editor of The Los Angeles Weekly; Northern California editor of California Magazine; Editor of The Berkeley Monthly; and Transitional Editor of San Francisco Magazine. </em></p>',
+    textCol2: "",
+    images: [
+      {
+        img: "aboutme",
+        captionText: "Photo by Reed Cooper",
+        alt: "Woman with Camera"
+      }
+    ]
+  },
+  {
+    pageName: "Contact",
+    textCol1: '<p>Contact me at tracyjohnston@comcast.net.</p>',
+    textCol2: "",
+    images: [
+      {
+        img: "contact",
+        captionText: "",
+        alt: "Woman Smiling"
+      }
+    ]
+  },
+  {
+    pageName: "LongArtMain",
+    title1: "DESERT RATS",
+    title2: "LA VIDA LOCA",
+    textCol1: '<p>DOWN CARSON pass from San Francisco came the urban woman in a Japanese car filled with Diet Cokes and Western history books, country music filling up every sensual space but the view, which at the moment was beyond the grasp of anything mortal: a vast, high desert stretching east to Utah filled with mountain ranges dropped from the cosmos like rumpled pieces of silk. Dry lake beds appeared like mirages; great swirling circles in chalk.&nbsp; The woman headed into it all awash in melodrama...<br><br><a href="/magazine-writing-1-2-1">click to continue reading</a></p>',
+    textCol2: '<p>Spider had his melancholy expression, the one that always made Loca forgive him. His sable brown eyes looked so sympathetic and sad that she forgot about the ways he treated her bad, the times he messed up on her with other girls, or went out shooting with his home boys. She was feeling sorry for him even before he had the hallucinations. He was a <em>vato loco</em>, a crazy guy in the East Los Angeles barrios , but it was because he didn\'t give a fuck about...<br><br><a href="/la-vida-loca">click to continue reading</a></p>',
+    images: [
+      {
+        img: "desertman",
+        captionText: "",
+        alt: "Older Man Smiling"
+      },
+      {
+        img: "loco",
+        captionText: "",
+        alt: "Kids on the street"
+      }
+    ]
+  }
+];
+
+
+/*
+  makeSrcset: helper function to build a long string for srcset attribute.
+  The values are a perfect match for the main page, where four images
+  are drawn in each row.  Browsers don't make perfect matches on these
+  values, however, and the options below seem sufficient for the extra pages,
+  even though they do not draw four images in a row.
+*/
+
+function makeSrcset(imgPath) {
+  return imgPath + "-1000.jpg 1000w," +
+         imgPath + "-640.jpg 640w," +
+         imgPath + "-540.jpg 540w," +
+         imgPath + "-440.jpg 440w," +
+         imgPath + "-330.jpg 330w," +
+         imgPath + "-270.jpg 270w," +
+         imgPath + "-220.jpg 220w," +
+         imgPath + "-165.jpg 165w";
+}
+
+
+/*
+  Series: constructor used to build an object with
+  all data about each series. It is run on each object
+  in "initialSeries" when the viewmodel is built.
+
+  It provides enough data to load the main page and all
+  associated articles.  It does *not* generate the info
+  for the galleries, cause that would be too expensive.
+  That happens when a user actually wants to see a gallery.
+*/
 
 var Series = function(data) {
   this.seriesName = data.seriesName;
   this.seriesCaption = data.seriesCaption;
 
+  // The main image:
   this.mainImg = data.images[data.mainImgIdx].img;
   this.mainCaptionText = this.seriesCaption;
   this.mainAltText = data.images[data.mainImgIdx].altText;
+  this.mainImgPath = "images/" + this.seriesName + "/" + this.mainImg;
+  this.mainSrc = this.mainImgPath + "-640.jpg";
+  this.mainSrcset = makeSrcset(this.mainImgPath);
+  this.mainSizes = "(min-width: 768px) 25vw, 100vw"; // 25 for 4 columns
 
+  // The article image:
   this.artImg = data.images[data.artImgIdx].img;
   this.artCaptionText = data.images[data.artImgIdx].captionText;
   this.artAltText = data.images[data.artImgIdx].altText;
   this.artTitle = data.artTitle;
   this.artText = data.artText;
   this.artTextTwo = data.artTextTwo;
-
-  this.mainImgPath = "images/" + this.seriesName + "/" + this.mainImg;
-  this.mainSrc = this.mainImgPath + "-640.jpg";
-  this.mainSrcset = this.mainImgPath + "-1000.jpg 1000w," +
-                this.mainImgPath + "-640.jpg 640w," +
-                this.mainImgPath + "-540.jpg 540w," +
-                this.mainImgPath + "-440.jpg 440w," +
-                this.mainImgPath + "-330.jpg 330w," +
-                this.mainImgPath + "-270.jpg 270w," +
-                this.mainImgPath + "-220.jpg 220w," +
-                this.mainImgPath + "-165.jpg 165w,";
-  this.mainSizes = "(min-width: 768px) 25vw, 100vw";
-
   this.artImgPath = "images/" + this.seriesName + "/" + this.artImg;
   this.artSrc = this.artImgPath + "-640.jpg";
-  this.artSrcset = this.artImgPath + "-1000.jpg 1000w," +
-                this.artImgPath + "-640.jpg 640w," +
-                this.artImgPath + "-540.jpg 540w," +
-                this.artImgPath + "-440.jpg 440w," +
-                this.artImgPath + "-330.jpg 330w," +
-                this.artImgPath + "-270.jpg 270w," +
-                this.artImgPath + "-220.jpg 220w," +
-                this.artImgPath + "-165.jpg 165w,";
-  this.artSizes = "(min-width: 768px) 58vw, 100vw";
+  this.artSrcset = makeSrcset(this.artImgPath);
+  this.artSizes = "(min-width: 768px) 58vw, 100vw"; // 58 for a 7/5 col ratio
 };
 
-var Image = function(imageData, seriesName) {
+
+/*
+  GalleryImage: constructor to build object for all images in gallery.
+  Only called when a gallery is actually selected by user.
+*/
+
+var GalleryImage = function(imageData, seriesName) {
   this.seriesName = seriesName;
   this.img = imageData.img;
   this.captionText = imageData.captionText;
   this.altText = imageData.altText;
-
   this.imgPath = "images/" + this.seriesName + "/" + this.img;
   this.src = this.imgPath + "-640.jpg";
-  this.srcset = this.imgPath + "-1000.jpg 1000w," +
-                this.imgPath + "-640.jpg 640w," +
-                this.imgPath + "-540.jpg 540w," +
-                this.imgPath + "-440.jpg 440w," +
-                this.imgPath + "-330.jpg 330w," +
-                this.imgPath + "-270.jpg 270w," +
-                this.imgPath + "-220.jpg 220w," +
-                this.imgPath + "-165.jpg 165w,";
-  this.sizes = "(min-width: 768px) 100vw, 100vw";
+  this.srcset = makeSrcset(this.imgPath);
+  this.sizes = "(min-width: 768px) 100vw, 100vw"; // 100 for 1 big column
 };
 
-/* the viewmodel */
+
+/* The Viewmodel */
 
 var ViewModel = function() {
   var self = this;
-  /* set global visible variables */
+
+  /* Create and set visibility variables */
   this.mainIsVisible = ko.observable(true);
   this.articleIsVisible = ko.observable(false);
   this.galleryIsVisible = ko.observable(false);
@@ -384,15 +419,25 @@ var ViewModel = function() {
   this.contactIsVisible = ko.observable(false);
   this.longArtMainIsVisible = ko.observable(false);
 
+  /*
+    Create all the variables for an article.
+    When a new article is shown, these values are replaced.
+  */
   this.artTitle = ko.observable("");
   this.artText = ko.observable("");
   this.artTextTwo = ko.observable("");
+  this.artAltText = ko.observable("");
+  this.artCaptionText = ko.observable("");
   this.artSrc = ko.observable("");
   this.artSrcset = ko.observable("");
   this.artSizes = ko.observable("");
-  this.artAltText = ko.observable("");
-  this.artCaptionText = ko.observable("");
 
+  /*
+    Create all the variables for extra pages (AboutMe, Contact, Articles).
+    Note that this one set of variables works for all three pages.
+    When a new page is loaded, values are replaced.
+    It's possible to have two images and two sets of associated text right now.
+  */
   this.EPtitle1 = ko.observable("");
   this.EPtextCol1 = ko.observable("");
   this.EPimg1 = ko.observable("");
@@ -413,16 +458,28 @@ var ViewModel = function() {
   this.EPsrcset2 = ko.observable("");
   this.EPsizes2 = ko.observable("");
 
-  
-  this.currentSeries = ko.observable("");
 
-  /* create empty mainView, articleView array and galleryView array */
+  /*
+    Create empty mainView, articleView array and galleryView array.
+    The "main"s don't change, so they don't need to be observable arrays.
+   */
   this.mainViewRowOne = [];
   this.mainViewRowTwo = [];
   this.galleryView = ko.observableArray();
 
-  /* populate mainView, a normal array that holds instances of Series */
-  // the first foreach loops through that and builds html to show main view 
+
+  /*
+    currentSeries: ensures a click on the picture in an article
+    calls up the gallery view for the right series.
+  */
+  this.currentSeries = ko.observable("");
+
+
+  /*
+     Populate the mainViews with instances of the Series constructor.
+     Want to have four series in each row.
+     The "index" argument represents which element the forEach is working on.
+  */
 
   initialSeries.forEach(function(series, index) {
     if (index < 4) {
@@ -431,6 +488,43 @@ var ViewModel = function() {
       self.mainViewRowTwo.push(new Series(series));
     }
   });
+
+
+  // hideAll: Helper function used to hide all the views at once.
+  self.hideAll = function() {
+    self.mainIsVisible(false);
+    self.articleIsVisible(false);
+    self.galleryIsVisible(false);
+    self.aboutmeIsVisible(false);
+    self.contactIsVisible(false);
+    self.longArtMainIsVisible(false);
+  };
+
+
+  /*
+    Go back to main page.
+    This is *not* called on an initial page load,
+    but rather when the "home" link is clicked.
+  */
+
+  self.showMain = function() {
+    self.hideAll();
+    self.mainIsVisible(true);
+    self.currentSeries("");
+  };
+
+
+  /*
+    showArticle: show a single article.
+    This runs when a user clicks on an image in the main page.
+    The "foreach" binding means that a click will pass the model
+    of the image clicked upon to this function.
+    That's the "series" parameter below.
+
+    Therefore "series" is going to be the entire object
+    that was pushed into mainViewRowOne or Two.
+    All the data is available to draw this view immediately.
+  */
 
   self.showArticle = function(series) {
     self.mainIsVisible(false);
@@ -444,20 +538,20 @@ var ViewModel = function() {
     self.artAltText(series.artAltText);
     self.artCaptionText(series.artCaptionText);
 
+    // Do this to ensure a click on the article picture links to correct gallery.
     self.currentSeries(series.seriesName);
 
     self.articleIsVisible(true);
   };
 
-  self.backToMain = function() {
-    self.articleIsVisible(false);
-    self.aboutmeIsVisible(false);
-    self.galleryIsVisible(false);
-    self.contactIsVisible(false);
-    self.longArtMainIsVisible(false);
-    self.mainIsVisible(true);
-    self.currentSeries("");
-  }; 
+
+  /*
+    showGallery: load the Gallery of images for the series.
+    The "galleryView" array has to be emptied and replaced.
+    It loops through the initialSeries til it finds the right series by name.
+    Then it loops through image array for series, skipping the MAIN image.
+    The "GalleryImage" constructor builds the object to push onto the galleryView.
+  */
 
   self.showGallery = function() {
     self.galleryView.removeAll();
@@ -465,7 +559,7 @@ var ViewModel = function() {
       if (series.seriesName === self.currentSeries()) {
         series.images.forEach(function(image) {
           if (! /MAIN/.test(image.img)) {
-            self.galleryView.push(new Image(image, series.seriesName));
+            self.galleryView.push(new GalleryImage(image, series.seriesName));
           }
         });
       }
@@ -475,104 +569,86 @@ var ViewModel = function() {
     self.galleryIsVisible(true);
   };
 
+
+  // showAboutme: display the About Me page.
+
   self.showAboutme = function() {
-    self.mainIsVisible(false);
-    self.articleIsVisible(false);
-    self.galleryIsVisible(false);
-    self.contactIsVisible(false);
-    self.longArtMainIsVisible(false);
+    self.hideAll();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "AboutMe") {
         self.EPtextCol1(page.textCol1);
-        self.EPimg1(page.images[0].img)
-        console.log(self.EPimg1());
-        self.EPcaptionText1(page.images[0].captionText)
-        self.EPaltText1(page.images[0].altText)
-
+        self.EPimg1(page.images[0].img);
+        self.EPcaptionText1(page.images[0].captionText);
+        self.EPaltText1(page.images[0].altText);
         self.EPimgPath1("images/extraPages/" + self.EPimg1());
-    console.log(self.EPimgPath1());
         self.EPsrc1(self.EPimgPath1() + "-440.jpg");
-        self.EPsrcset1(self.EPimgPath1() + "-440.jpg 440w," +
-                         self.EPimgPath1() + "-330.jpg 330w," +
-                         self.EPimgPath1() + "-270.jpg 270w," +
-                         self.EPimgPath1() + "-220.jpg 220w," +
-                         self.EPimgPath1() + "-165.jpg 165w");
-        self.EPsizes1("(min-width: 768px) 40vw, 100vw");
+        self.EPsrcset1(makeSrcset(self.EPimgPath1()));
+        self.EPsizes1("(min-width: 768px) 40vw, 100vw"); // 40 is right.
       }
     });
 
     self.aboutmeIsVisible(true);
-  }; 
+  };
+
+
+  // showContact: show the Contact page.
 
   self.showContact = function() {
-    self.mainIsVisible(false);
-    self.articleIsVisible(false);
-    self.galleryIsVisible(false);
-    self.aboutmeIsVisible(false);
-    self.longArtMainIsVisible(false);
+    self.hideAll();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "Contact") {
         self.EPtextCol1(page.textCol1);
-        self.EPimg1(page.images[0].img)
-        self.EPcaptionText1(page.images[0].captionText)
-        self.EPaltText1(page.images[0].altText)
-
+        self.EPimg1(page.images[0].img);
+        self.EPcaptionText1(page.images[0].captionText);
+        self.EPaltText1(page.images[0].altText);
         self.EPimgPath1("images/extraPages/" + self.EPimg1());
         self.EPsrc1(self.EPimgPath1() + "-440.jpg");
-        self.EPsrcset1(self.EPimgPath1() + "-440.jpg 440w," +
-                         self.EPimgPath1() + "-330.jpg 330w," +
-                         self.EPimgPath1() + "-270.jpg 270w," +
-                         self.EPimgPath1() + "-220.jpg 220w," +
-                         self.EPimgPath1() + "-165.jpg 165w");
+        self.EPsrcset1(makeSrcset(self.EPimgPath1()));
         self.EPsizes1("(min-width: 768px) 40vw, 100vw");
       }
     });
 
     self.contactIsVisible(true);
-  }; 
-    
+  };
+
+
+  /*
+    showLongArtMain: show the long articles in "Articles" link.
+    There are two articles to show.
+    The "click to continue reading" link doesn't go anywhere yet.
+  */
+
   self.showLongArtMain = function() {
-    self.mainIsVisible(false);
-    self.articleIsVisible(false);
-    self.galleryIsVisible(false);
-    self.aboutmeIsVisible(false);
+    self.hideAll();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "LongArtMain") {
         self.EPtitle1(page.title1);
         self.EPtextCol1(page.textCol1);
-        self.EPimg1(page.images[0].img)
-        self.EPcaptionText1(page.images[0].captionText)
-        self.EPaltText1(page.images[0].altText)
+        self.EPimg1(page.images[0].img);
+        self.EPcaptionText1(page.images[0].captionText);
+        self.EPaltText1(page.images[0].altText);
         self.EPimgPath1("images/extraPages/" + self.EPimg1());
         self.EPsrc1(self.EPimgPath1() + "-440.jpg");
-        self.EPsrcset1(self.EPimgPath1() + "-440.jpg 440w," +
-                         self.EPimgPath1() + "-330.jpg 330w," +
-                         self.EPimgPath1() + "-270.jpg 270w," +
-                         self.EPimgPath1() + "-220.jpg 220w," +
-                         self.EPimgPath1() + "-165.jpg 165w");
+        self.EPsrcset1(makeSrcset(self.EPimgPath1()));
         self.EPsizes1("(min-width: 768px) 40vw, 100vw");
 
         self.EPtitle2(page.title2);
         self.EPtextCol2(page.textCol2);
-        self.EPimg2(page.images[1].img)
-        self.EPcaptionText2(page.images[1].captionText)
-        self.EPaltText2(page.images[1].altText)
+        self.EPimg2(page.images[1].img);
+        self.EPcaptionText2(page.images[1].captionText);
+        self.EPaltText2(page.images[1].altText);
         self.EPimgPath2("images/extraPages/" + self.EPimg2());
         self.EPsrc2(self.EPimgPath2() + "-440.jpg");
-        self.EPsrcset2(self.EPimgPath2() + "-440.jpg 440w," +
-                         self.EPimgPath2() + "-330.jpg 330w," +
-                         self.EPimgPath2() + "-270.jpg 270w," +
-                         self.EPimgPath2() + "-220.jpg 220w," +
-                         self.EPimgPath2() + "-165.jpg 165w");
+        self.EPsrcset2(makeSrcset(self.EPimgPath2()));
         self.EPsizes2("(min-width: 768px) 40vw, 100vw");
       }
     });
 
     self.longArtMainIsVisible(true);
-  }; 
+  };
 
 };
 ko.applyBindings(new ViewModel());

@@ -8,6 +8,45 @@ body {
   margin-top: 10px;
 }
 
+.header-title-text {
+  color: #061603;
+  font-family: "Roboto Slab";
+  font-size: 32px;
+  line-height: 1.9em;
+  letter-spacing: 13px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.header-subtitle-text {
+  color: #000;
+  font-family: "Roboto Slab";
+  font-size: 18px;
+  line-height: .9em;
+  letter-spacing: 3px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav-link-custom {
+  color: #5a0202;
+  font-family: "Roboto Slab";
+  font-size: 18px;
+  line-height: 2.1em;
+  letter-spacing: 1px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav-link-custom:hover {
+  color: #936969;
+}
+
+.article-text {
+  font-size: 16px;
+}
+
+
 @media only screen and (max-width: 768px) {
   #navbar-in-mobile {
     margin-bottom: 2px;
@@ -17,24 +56,3 @@ body {
     margin-bottom: 2px;
   }
 }
-
-
-/*
-  Examples of media queries.
-
-  @media only screen and (max-width: 768px) {
-
-    #mapDiv {
-      background-color: #9d94b4;
-    }
-
-    #filter-input-prompt {
-      width: 100%;
-    }
-  }
-
-  @media only screen and (max-width: 768px) and (orientation: landscape) {
-  @media only screen and (min-width: 768px) {
-  @media only screen and (min-width: 992px) {
-
-*/

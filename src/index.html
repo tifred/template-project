@@ -6,13 +6,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Kraken</title>
   <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel='stylesheet'>
+  <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400" rel='stylesheet'>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/font-awesome.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <script src="js/lib/knockout-3.2.0.js"></script>
 </head>
 <body>
-  <!-- START NAV -->
+
+  <!-- COLLAPSED NAVIGATION -->
+
+  <!-- This is taken from bootstrap's example for collapsed navbars.
+
+       Normally, the "li"s appear either in the navbar (above 768px)
+       or when the menu icon is clicked (below 768px).
+       I don't want the links to appear in the navbar, so I used the
+       "visible-xs-block" class on the nav tag.  This makes the navbar
+       visible only below 768 and at that point it is hidden by the normal
+       bootstrap navbar collapsed behavior. In effect: the li's don't show on top.
+
+       The "navbar-in-mobile" class reduces the margins and paddings of
+       elements below 768px.  That improves readability on small devices. -->
 
         <nav class="navbar navbar-default visible-xs-block" id="navbar-in-mobile">
           <div class="container" id="navbar-in-mobile">
@@ -23,17 +37,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <!-- a class="navbar-brand" href="#">WebSiteName</a -->
-              <h2 class="text-center" id="navbar-in-mobile">TRACY JOHNSTON ERSATZ</h2>
-              <h4 class="text-center" id="subheader-in-mobile">PHOTOGRAPHY & PROSE</h4>
+              <h2 class="text-center header-title-text" id="navbar-in-mobile">TRACY JOHNSTON</h2>
+              <h4 class="text-center header-subtitle-text" id="subheader-in-mobile">PHOTOGRAPHY & PROSE</h4>
             </div>
+
+            <!-- This is the list that appears when menu icon is toggled.
+                 Clicks will call the appropriate method in the view model. -->
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav navbar-right">
                 <li data-bind="click: showAboutme"><a href="#">About Me</a></li>
                 <li data-bind="click: showContact"><a href="#">Contact</a></li>
                 <li data-bind="click: showLongArtMain"><a href="#">Articles</a></li>
-                <li data-bind="click: backToMain"><a href="#">Home</a></li>
+                <li data-bind="click: showMain"><a href="#">Home</a></li>
               </ul>
             </div>
 
@@ -45,22 +61,24 @@
   <div class="container">
 
     <header class="row header-row hidden-xs">
-        <h2 class="text-center">TRACY JOHNSTON ERSATZ</h2>
-        <h4 class="text-center">PHOTOGRAPHY & PROSE</h4>
+        <h2 class="text-center header-title-text">TRACY JOHNSTON</h2>
+        <h4 class="text-center header-subtitle-text">PHOTOGRAPHY & PROSE</h4>
     </header>
 
-    <!-- START NAV -->
+    <!-- VISIBLE/EXPANDED NAVIGATION -->
+
+    <!-- Clicks on links call the appropriate method in the view model. -->
 
     <nav class="row nav-row hidden-xs">
       <div class="col-sm-2"></div>
-      <div class="col-sm-2" data-bind="click: backToMain">Home</div>
-      <div class="col-sm-2" data-bind="click: showAboutme">About Me</div>
-      <div class="col-sm-2"  data-bind="click: showContact">Contact</div>
-      <div class="col-sm-2" data-bind="click: showLongArtMain">Articles</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showMain">Home</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showAboutme">About Me</div>
+      <div class="col-sm-2 nav-link-custom"  data-bind="click: showContact">Contact</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showLongArtMain">Articles</div>
       <div class="col-sm-2"></div>
     </nav>
 
-    <!-- START SECTION ONE -->
+    <!-- FIRST ROW OF IMAGES -->
 
     <section class="row" data-bind="foreach: mainViewRowOne, visible: mainIsVisible">
       <div class="col-sm-3">
@@ -68,10 +86,10 @@
           <img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle">
           <figcaption data-bind="text: $data.mainCaptionText"></figcaption>
         </figure>
-      </div> 
-    </section>  
+      </div>
+    </section>
 
-    <!-- START SECTION TWO -->
+    <!-- SECOND ROW OF IMAGES -->
 
     <section class="row" data-bind="foreach: mainViewRowTwo, visible: mainIsVisible">
       <div class="col-sm-3">
@@ -79,11 +97,11 @@
           <img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle">
           <figcaption data-bind="text: $data.mainCaptionText"></figcaption>
         </figure>
-      </div> 
-    </section>  
+      </div>
+    </section>
 
     <!-- ARTICLE VIEW -->
-   
+
     <section class="row" data-bind="visible: articleIsVisible">
       <div class="col-sm-5">
         <h3 data-bind="text: artTitle"></h3>
@@ -95,22 +113,38 @@
           <figcaption data-bind="text: artCaptionText"></figcaption>
         </figure>
         <div data-bind="html: artTextTwo"></div>
-      </div> 
-    </section>    
+      </div>
+    </section>
 
     <!-- GALLERY VIEW -->
+
+    <!-- Taken from Bootstrap's Carousel examples.
+         I removed the option to start the slides looping automatically,
+         as it was erratic and made it impossible (sometimes) to manually
+         move through the gallery.  -->
 
     <section class="row" data-bind="visible: galleryIsVisible">
 
       <div id="carousel-example-generic" class="carousel slide">
+
 	<!-- Indicators -->
+
+        <!-- This sets up the little dots on the bottom that indicate
+             which slide one is on.  Need one li for each slide, so the
+             li's are built with a foreach.  The first one has to be "active" -->
+
 	<ol class="carousel-indicators" data-bind="foreach: galleryView">
 	  <li data-target="#carousel-example-generic" data-bind="css: { active: $index() === 0 }, attr: { "data-slide-to": $index }"></li>
 	</ol>
 
 	<!-- Wrapper for slides -->
+
+        <!-- The foreach creates the img tags for all the images.
+             The first one (only) has to have the "active" class.
+             That is what the css binding does.
+             Note that "index must be index() -->
+
 	<div class="carousel-inner" role="listbox" data-bind="foreach: galleryView">
-          <!-- the index needs the (), or all fails.  not sure why. -->
 	  <div class="item active" data-bind="css: { active: $index() === 0 }">
             <img class="img-responsive" data-bind="attr: { src: $data.src, srcset: $data.srcset, sizes: $data.sizes, alt: $data.altText }">
 	    <div class="carousel-caption">
@@ -120,6 +154,7 @@
 	</div>
 
 	<!-- Controls -->
+
 	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 	  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 	  <span class="sr-only">Previous</span>
@@ -130,7 +165,8 @@
 	</a>
       </div>
 
-    </section>  
+    </section>
+
 
     <!-- ABOUT ME -->
 
@@ -142,8 +178,8 @@
           <img class="img-responsive" data-bind="attr: { src: EPsrc1,  srcset: EPsrcset1, sizes: EPsizes1, alt: EPaltText1 }">
           <figcaption data-bind="text: EPcaptionText1"></figcaption>
         </figure>
-      </div> 
-    </section>    
+      </div>
+    </section>
 
 
     <!-- CONTACT -->
@@ -154,10 +190,10 @@
           <img class="img-responsive" data-bind="attr: { src: EPsrc1,  srcset: EPsrcset1, sizes: EPsizes1, alt: EPaltText1 }">
           <figcaption data-bind="text: EPcaptionText1"></figcaption>
         </figure>
-      </div> 
+      </div>
       <div class="col-sm-5" data-bind="html: EPtextCol1">
       </div>
-    </section>    
+    </section>
 
 
     <!-- LONG ARTICLES MAIN -->
@@ -165,30 +201,30 @@
     <section class="row" data-bind="visible: longArtMainIsVisible">
 
       <div class="col-sm-6">
-        <h3 data-bind="text: EPtitle1"><h3>
+        <h2 data-bind="text: EPtitle1"><h2>
         <div class="row">
-          <div class="col-sm-6" data-bind="html: EPtextCol1"> </div>
+          <div class="col-sm-6 article-text" data-bind="html: EPtextCol1"> </div>
 	  <div class="col-sm-6">
 	    <figure>
 	      <img class="img-responsive" data-bind="attr: { src: EPsrc1,  srcset: EPsrcset1, sizes: EPsizes1, alt: EPaltText1 }">
 	      <figcaption data-bind="text: EPcaptionText1"></figcaption>
 	    </figure>
-          </div> 
-        </div> 
-      </div> 
+          </div>
+        </div>
+      </div>
 
       <div class="col-sm-6">
-        <h3 data-bind="text: EPtitle2"><h3>
+        <h2 data-bind="text: EPtitle2"><h2>
         <div class="row">
-          <div class="col-sm-6" data-bind="html: EPtextCol2"> </div>
+          <div class="col-sm-6 article-text" data-bind="html: EPtextCol2"> </div>
 	  <div class="col-sm-6">
 	    <figure>
 	      <img class="img-responsive" data-bind="attr: { src: EPsrc2,  srcset: EPsrcset2, sizes: EPsizes2, alt: EPaltText2 }">
 	      <figcaption data-bind="text: EPcaptionText2"></figcaption>
 	    </figure>
-          </div> 
-        </div> 
-      </div> 
+          </div>
+        </div>
+      </div>
 
     </section>
 
