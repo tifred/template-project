@@ -4,8 +4,8 @@ body {
 
 * {
   font-family: PT Sans, sans-serif;
-  font-weight: 500;
-  margin-top: 10px;
+  font-weight: 400;
+  margin-top: 5px;
 }
 
 .header-title-text {
@@ -16,6 +16,7 @@ body {
   letter-spacing: 13px;
   font-weight: 400;
   font-style: normal;
+  margin-top: 5px; 
 }
 
 .header-subtitle-text {
@@ -46,6 +47,10 @@ body {
   color: #f6eaea;
 }
 
+#main-container {
+  margin-top: 0px;
+}
+
 .figcaption-main-page {
   margin-top: 3px;
   color: #000;
@@ -61,13 +66,43 @@ body {
   margin-bottom: 40px;
 }
 
+.menu-button {
+  padding-top: 4px;
+  margin-top: 15px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 
 @media only screen and (max-width: 768px) {
-  #navbar-in-mobile {
+  #header-in-mobile {
     margin-bottom: 2px;
     margin-top: 2px;
+    margin-right: 2px;
+    padding-right: 2px;
+    padding-left: 12px;
   }
   #subheader-in-mobile {
     margin-bottom: 2px;
+    padding-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 468px) {
+  #header-large-div {
+    width: 83.33333333%;
+  }
+  #header-small-div {
+    width: 16.66666667%;
+  }
+}
+
+// The reverse case:
+@media only screen and (min-width: 468px) {
+  #header-large-div {
+    width: 91.66666667%;
+  }
+  #header-small-div {
+    width: 8.33333333%;
   }
 }
