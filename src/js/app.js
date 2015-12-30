@@ -419,6 +419,11 @@ var ViewModel = function() {
   this.contactIsVisible = ko.observable(false);
   this.longArtMainIsVisible = ko.observable(false);
 
+  this.homeLinkWasClicked = ko.observable(false);
+  this.aboutmeLinkWasClicked = ko.observable(false);
+  this.contactLinkWasClicked = ko.observable(false);
+  this.articlesLinkWasClicked = ko.observable(false);
+
   /*
     Create all the variables for an article.
     When a new article is shown, these values are replaced.
@@ -500,6 +505,14 @@ var ViewModel = function() {
     self.longArtMainIsVisible(false);
   };
 
+  self.clearLinkVisitedColor = function() {
+    console.log("x");
+    self.homeLinkWasClicked(false);
+    self.aboutmeLinkWasClicked(false);
+    self.contactLinkWasClicked(false);
+    self.articlesLinkWasClicked(false);
+    console.log("from clearAll: " + self.homeLinkWasClicked());
+  };
 
   /*
     Go back to main page.
@@ -509,8 +522,11 @@ var ViewModel = function() {
 
   self.showMain = function() {
     self.hideAll();
+    self.clearLinkVisitedColor();
     self.mainIsVisible(true);
     self.currentSeries("");
+    self.homeLinkWasClicked(true);
+    console.log("from showMain: " + self.homeLinkWasClicked());
   };
 
 
@@ -528,6 +544,7 @@ var ViewModel = function() {
 
   self.showArticle = function(series) {
     self.mainIsVisible(false);
+    self.clearLinkVisitedColor(); // I think this is wrong, navigation-wise.
 
     self.artTitle(series.artTitle);
     self.artText(series.artText);
@@ -574,6 +591,7 @@ var ViewModel = function() {
 
   self.showAboutme = function() {
     self.hideAll();
+    self.clearLinkVisitedColor();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "AboutMe") {
@@ -589,6 +607,7 @@ var ViewModel = function() {
     });
 
     self.aboutmeIsVisible(true);
+    self.aboutmeLinkWasClicked(true);
   };
 
 
@@ -596,6 +615,7 @@ var ViewModel = function() {
 
   self.showContact = function() {
     self.hideAll();
+    self.clearLinkVisitedColor();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "Contact") {
@@ -611,6 +631,7 @@ var ViewModel = function() {
     });
 
     self.contactIsVisible(true);
+    self.contactLinkWasClicked(true);
   };
 
 
@@ -622,6 +643,7 @@ var ViewModel = function() {
 
   self.showLongArtMain = function() {
     self.hideAll();
+    self.clearLinkVisitedColor();
 
     extraPages.forEach(function(page) {
       if (page.pageName === "LongArtMain") {
@@ -648,6 +670,7 @@ var ViewModel = function() {
     });
 
     self.longArtMainIsVisible(true);
+    self.articlesLinkWasClicked(true);
   };
 
 };

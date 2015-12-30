@@ -42,14 +42,15 @@
             </div>
 
             <!-- This is the list that appears when menu icon is toggled.
-                 Clicks will call the appropriate method in the view model. -->
+                 Clicks will call the appropriate method in the view model.
+                 They will also collapse the menu icon.  -->
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav navbar-right">
-                <li data-bind="click: showAboutme"><a href="#">About Me</a></li>
-                <li data-bind="click: showContact"><a href="#">Contact</a></li>
-                <li data-bind="click: showLongArtMain"><a href="#">Articles</a></li>
-                <li data-bind="click: showMain"><a href="#">Home</a></li>
+                <li data-bind="click: showAboutme"><a href="#" data-toggle="collapse" data-target="#myNavbar">About Me</a></li>
+                <li data-bind="click: showContact"><a href="#" data-toggle="collapse" data-target="#myNavbar">Contact</a></li>
+                <li data-bind="click: showLongArtMain"><a href="#" data-toggle="collapse" data-target="#myNavbar">Articles</a></li>
+                <li data-bind="click: showMain"><a href="#" data-toggle="collapse" data-target="#myNavbar">Home</a></li>
               </ul>
             </div>
 
@@ -68,23 +69,25 @@
     <!-- VISIBLE/EXPANDED NAVIGATION -->
 
     <!-- Clicks on links call the appropriate method in the view model. -->
+    <!-- Note: navlinkclicked fails with knockout if it has hyphens in name -->
 
     <nav class="row nav-row hidden-xs">
       <div class="col-sm-2"></div>
-      <div class="col-sm-2 nav-link-custom" data-bind="click: showMain">Home</div>
-      <div class="col-sm-2 nav-link-custom" data-bind="click: showAboutme">About Me</div>
-      <div class="col-sm-2 nav-link-custom"  data-bind="click: showContact">Contact</div>
-      <div class="col-sm-2 nav-link-custom" data-bind="click: showLongArtMain">Articles</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showMain, css: { navlinkclicked: homeLinkWasClicked() }">Home</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showAboutme, css: { navlinkclicked: aboutmeLinkWasClicked() } ">About Me</div>
+      <div class="col-sm-2 nav-link-custom"  data-bind="click: showContact, css: { navlinkclicked: contactLinkWasClicked() }">Contact</div>
+      <div class="col-sm-2 nav-link-custom" data-bind="click: showLongArtMain, css: { navlinkclicked: articlesLinkWasClicked() }">Articles</div>
       <div class="col-sm-2"></div>
     </nav>
+
 
     <!-- FIRST ROW OF IMAGES -->
 
     <section class="row" data-bind="foreach: mainViewRowOne, visible: mainIsVisible">
       <div class="col-sm-3">
         <figure>
-          <img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle">
-          <figcaption data-bind="text: $data.mainCaptionText"></figcaption>
+          <a href="#"><img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle"></a>
+          <figcaption class="figcaption-main-page" data-bind="text: $data.mainCaptionText"></figcaption>
         </figure>
       </div>
     </section>
@@ -94,8 +97,8 @@
     <section class="row" data-bind="foreach: mainViewRowTwo, visible: mainIsVisible">
       <div class="col-sm-3">
         <figure>
-          <img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle">
-          <figcaption data-bind="text: $data.mainCaptionText"></figcaption>
+          <a href="#"><img class="img-responsive" data-bind="attr: { src: $data.mainSrc, srcset: $data.mainSrcset, sizes: $data.mainSizes, alt: $data.mainAltText }, click: $parent.showArticle"></a>
+          <figcaption class="figcaption-main-page" data-bind="text: $data.mainCaptionText"></figcaption>
         </figure>
       </div>
     </section>
@@ -104,12 +107,12 @@
 
     <section class="row" data-bind="visible: articleIsVisible">
       <div class="col-sm-5">
-        <h3 data-bind="text: artTitle"></h3>
+        <h2 class="article-title" data-bind="text: artTitle"></h2>
         <div data-bind="html: artText"></div>
       </div>
       <div class="col-sm-7">
         <figure>
-          <img class="img-responsive" data-bind="attr: { src: artSrc, srcset: artSrcset, sizes: artSizes, alt: artAltText }, click: showGallery">
+          <a href="#"><img class="img-responsive" data-bind="attr: { src: artSrc, srcset: artSrcset, sizes: artSizes, alt: artAltText }, click: showGallery"></a>
           <figcaption data-bind="text: artCaptionText"></figcaption>
         </figure>
         <div data-bind="html: artTextTwo"></div>

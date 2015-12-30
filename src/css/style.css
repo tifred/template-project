@@ -42,8 +42,23 @@ body {
   color: #936969;
 }
 
+.navlinkclicked {
+  color: #f6eaea;
+}
+
+.figcaption-main-page {
+  margin-top: 3px;
+  color: #000;
+  font-size: 12px;
+}
+
+
 .article-text {
   font-size: 16px;
+}
+
+.article-title {
+  margin-bottom: 40px;
 }
 
 
