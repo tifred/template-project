@@ -6,10 +6,17 @@ var gulp = require('gulp'),
    minifyHTML = require('gulp-minify-html');
    jshint = require('gulp-jshint');
    concat = require('gulp-concat');
+   imageOptim = require('gulp-imageoptim');
 
 gulp.task('buildDist', function() {
-  gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css", "!./src/images_src/**"])
+  gulp.src(["./src/**", "!./src/**/*.js", "!./src/**/*.html", "!./src/**/*.css", "!./src/images_src/**/*", "!./src/images/**/*"])
     .pipe(gulp.dest("./dist"));
+});
+
+gulp.task('images', function() {
+  return gulp.src('./src/images/**/*')
+    .pipe(imageOptim.optimize())
+    .pipe(gulp.dest('./dist/images/'));
 });
 
 gulp.task('minify-html', function() {
@@ -37,4 +44,4 @@ gulp.task('lint', function() {
 });
   
 
-gulp.task('build', ['lint', 'buildDist', 'minify-html', 'minifyJS', 'minifyCSS']);
+gulp.task('build', ['lint', 'buildDist', 'images', 'minify-html', 'minifyJS', 'minifyCSS']);
