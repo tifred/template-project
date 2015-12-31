@@ -1,23 +1,10 @@
-/* zocial */
+/* applies to zocial icons, which are imported in style tag in html*/
 [class*="zocial-"]:before {
   font-family: 'zocial', sans-serif;
   font-size: 30px;
   transition: font-size 2s;
-  color: #D5DBE6;
+  color: #d5dbe6;
 }
-
-body {
-  background-color: #a1a1a1;
-  color: #000;
-}
-
-/*
-* {
-  font-family: PT Sans, sans-serif;
-  font-weight: 400;
-  margin-top: 5px;
-}
-*/
 
 * {
   font-family: "Roboto";
@@ -28,6 +15,17 @@ body {
   margin-top: 5px;
 }
 
+body {
+  background-color: #a1a1a1;
+  color: #000;
+}
+
+/*
+  The next two apply to the header and subheader in the normal page view,
+  NOT to the headers seen below 768px.
+  They look the same, but have different tags in the html.
+  Those are handled by the "navbar-in-mobile" ids with mediaqueries.
+*/
 
 .header-title-text {
   color: #061603;
@@ -37,7 +35,7 @@ body {
   letter-spacing: 13px;
   font-weight: 400;
   font-style: normal;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 .header-subtitle-text {
@@ -49,6 +47,11 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+/*
+  These apply to navigation links in the normal page,
+  NOT to the links exposed by the expansion of the menu icon.
+*/
 
 .nav-link-custom {
   color: #5a0202;
@@ -64,6 +67,15 @@ body {
   color: #936969;
 }
 
+.navlinkclicked {
+  color: #f6eaea;
+}
+
+/*
+  These apply to the links exposed by the expanded menu icon.
+  They effectively duplicate what was done above with the "normal" links.
+*/
+
 .navbar-default .navbar-nav > li > a.nav-link-custom {
   color: #5a0202;
   font-size: 12px;
@@ -74,19 +86,24 @@ body {
   color: #936969;
 }
 
-
-.navlinkclicked {
-  color: #f6eaea;
-}
-
 .navbar-default .navbar-nav > li.navlinkclicked > a {
   color: #f6eaea;
 }
 
+/* reduce the lower padding on the last link, to keep  things trim. */
 .navbar-default .navbar-nav > li:last-child > a.nav-link-custom {
   padding-bottom: 0px;
 }
 
+/* adjust menu icon to be inline with headers */
+.menu-button {
+  padding-top: 4px;
+  margin-top: 15px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+/* keep everything close to the top of the page, for the sake of mobile. */
 #main-container {
   margin-top: 0px;
 }
@@ -98,11 +115,10 @@ body {
   font-size: 12px;
 }
 
-.galleryNiceName {
-  margin-top: 15px;
-  font-style: italic;
-  font-size: 20px;
-}
+/*
+  These apply to the article page reached by clicking on an image
+  in the main page.  It's not the "Articles" link: that's different.
+*/
 
 .article-title {
   margin-bottom: 40px;
@@ -116,18 +132,20 @@ body {
   margin-top: 15px;
 }
 
+/* applies to both article and about me. */
 .figcaption-article,
 .figcaption-aboutme {
   font-style: italic;
 }
 
-.menu-button {
-  padding-top: 4px;
+/* Applies to Gallery page. */
+.galleryNiceName {
   margin-top: 15px;
-  margin-left: 2px;
-  margin-right: 2px;
+  font-style: italic;
+  font-size: 20px;
 }
 
+/* Applies to long articles page. */
 .long-article-title {
   font-family: "Varela Round", sans-serif;
   font-size: 30px;
@@ -136,10 +154,16 @@ body {
   font-style: normal;
 }
 
+/* The footer.  See the html for what icons are shown. */
 footer {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+/*
+  Below 768px the menu icon becomes visible.
+  The headers have to adjust to compensate.
+*/
 
 @media only screen and (max-width: 768px) {
   #header-in-mobile {
@@ -149,41 +173,53 @@ footer {
     padding-right: 2px;
     padding-left: 12px;
   }
+
   #subheader-in-mobile {
     margin-bottom: 2px;
     padding-left: 12px;
   }
+
+  /* without this, the background will be an off white */
   #navbar-in-mobile {
     background-color: #a1a1a1;
     border-color: #a1a1a1;
     margin-bottom: 2px;
     margin-top: 0px;
   }
+
+  /* Want to press all elements higher up the page in mobile */
   #header-large-div {
     margin-top: 0px;
   }
 }
 
-@media only screen and (max-width: 768px) and (orientation: landscape) {
-}
+/*
+  Normally the header and menu icon divide the row into columns
+  of 11 and 1.  That doesn't work at really small screen sizes in a
+  browser.  The menu gets squished a row lower and way to the left.
+  This query changes the widths to, effectively, columns of
+  10 and 2.  Then it readjusts if the browser is made larger.
+*/
 
-// This prevents the menu icon from disappearing if you resize in a lot.
 @media only screen and (max-width: 468px) {
+
   #header-large-div {
     width: 83.33333333%;
   }
+
   #header-small-div {
     width: 16.66666667%;
   }
 }
 
-// This restores the initial widths if you resize back out.
+/* This restores the initial widths if you resize back out. */
 @media only screen and (min-width: 468px) {
+
   #header-large-div {
     width: 91.66666667%;
   }
+
   #header-small-div {
     width: 8.33333333%;
   }
 }
-

@@ -18,7 +18,6 @@
 <body>
 
   <!-- COLLAPSED NAVIGATION -->
-
   <!-- This is taken from bootstrap's example for collapsed navbars.
 
        Normally, the "li"s appear either in the navbar (above 768px)
@@ -74,7 +73,6 @@
     </header>
 
     <!-- BROWSER-SIZED NAVIGATION -->
-
     <!-- Clicks on links call the appropriate method in the view model. -->
     <!-- Note: navlinkclicked fails with knockout if it has hyphens in name -->
 
@@ -128,7 +126,6 @@
     </section>
 
     <!-- GALLERY VIEW -->
-
     <!-- Taken from Bootstrap's Carousel examples.
          I removed the option to start the slides looping automatically,
          as it was erratic and made it impossible (sometimes) to manually
@@ -139,7 +136,6 @@
       <div id="carousel-example-generic" class="carousel slide">
 
 	<!-- Indicators -->
-
         <!-- This sets up the little dots on the bottom that indicate
              which slide one is on.  Need one li for each slide, so the
              li's are built with a foreach.  The first one has to be "active" -->
@@ -149,7 +145,6 @@
 	</ol>
 
 	<!-- Wrapper for slides -->
-
         <!-- The foreach creates the img tags for all the images.
              The first one (only) has to have the "active" class.
              That is what the css binding does.
@@ -175,13 +170,12 @@
 	  <span class="sr-only">Next</span>
 	</a>
       </div>
-      
+
       <div data-bind="if: galleryView().length > 0">
         <div class="galleryNiceName text-center" data-bind="text: galleryView()[0].galleryNiceName"></div>
       </div>
 
     </section>
-
 
     <!-- ABOUT ME -->
 
@@ -196,7 +190,6 @@
       </div>
     </section>
 
-
     <!-- CONTACT -->
 
     <section class="row" data-bind="visible: contactIsVisible">
@@ -210,13 +203,12 @@
       </div>
     </section>
 
-
     <!-- LONG ARTICLES MAIN -->
 
     <section class="row" data-bind="visible: longArtMainIsVisible">
 
       <div class="col-sm-6">
-        <h2 class="long-article-title" data-bind="text: EPtitle1"><h2>
+        <h2 class="long-article-title" data-bind="text: EPtitle1"></h2>
         <div class="row">
           <div class="col-sm-6 article-text" data-bind="html: EPtextCol1"> </div>
 	  <div class="col-sm-6">
@@ -229,7 +221,7 @@
       </div>
 
       <div class="col-sm-6">
-        <h2 class="long-article-title" data-bind="text: EPtitle2"><h2>
+        <h2 class="long-article-title" data-bind="text: EPtitle2"></h2>
         <div class="row">
           <div class="col-sm-6 article-text" data-bind="html: EPtextCol2"> </div>
 	  <div class="col-sm-6">
@@ -242,7 +234,8 @@
       </div>
 
     </section>
-    <!-- Footer -->
+
+    <!-- FOOTER -->
 
     <footer class="row text-center">
       <div class="col-xs-2"></div>
