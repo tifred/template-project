@@ -29,6 +29,7 @@ var initialSeries = [
   {
     seriesName: "skate",
     seriesCaption: "West Oakland\'s controversial skateboard park",
+    galleryNiceName: "Gallery for West Oakland Skateboard Park Series",
     mainImgIdx: 0,
     artImgIdx: 2,
     artTitle: "LIFE SUCKS",
@@ -60,6 +61,7 @@ var initialSeries = [
   {
     seriesName: "westoak",
     seriesCaption: "Life in West Oakland series",
+    galleryNiceName: "Gallery for Life In West Oakland Series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "WEST OAKLAND",
@@ -91,6 +93,7 @@ var initialSeries = [
   {
     seriesName: "homeless",
     seriesCaption: "Homesless series: West Oakland and Salinas",
+    galleryNiceName: "Gallery for Homeless in West Oakland and Salinas Series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "AMONG THE HOMELESS",
@@ -122,6 +125,7 @@ var initialSeries = [
   {
     seriesName: "rust",
     seriesCaption: "Rust series",
+    galleryNiceName: "Gallery for Rust Series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "RUST AMONG US",
@@ -153,6 +157,7 @@ var initialSeries = [
   {
     seriesName: "road",
     seriesCaption: "On the road.",
+    galleryNiceName: "Gallery For On The Road Series",
     mainImgIdx: 0,
     artImgIdx: 2,
     artTitle: "ON THE ROAD",
@@ -184,10 +189,11 @@ var initialSeries = [
   {
     seriesName: "easter",
     seriesCaption: "Easter Sunday in West Oakland",
+    galleryNiceName: "Gallery For Easter Sunday in West Oakland Series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "AT THE CHURCH",
-    artText: '<p><strong>THESE ARE THE FACES FROM THREE "OLD SCHOOL"” </strong>churches in West Oakland — snapshots taken on Easter Sunday, 2015. They are the faces of the black community\'s "solid citizens." The men in these photos have probably always worked; the women have either worked or been active in church and volunteer organizations. Most are well educated. Their roots go back to Texas or Louisiana, the southern end of the railroad line that took their families to California during WWII in search of jobs. In the l940s, in Jim Crow south, it was almost impossible for African-Americans to succeed. Segregation wasn\'t just about not being able to vote or having separate schools. It was about having to step off the sidewalk to let a white person pass. None of these solid citizens say racism is over because too many black people are in desperate straits.</p>',
+    artText: '<p><strong>THESE ARE THE FACES FROM THREE "OLD SCHOOL" </strong>churches in West Oakland — snapshots taken on Easter Sunday, 2015. They are the faces of the black community\'s "solid citizens." The men in these photos have probably always worked; the women have either worked or been active in church and volunteer organizations. Most are well educated. Their roots go back to Texas or Louisiana, the southern end of the railroad line that took their families to California during WWII in search of jobs. In the l940s, in Jim Crow south, it was almost impossible for African-Americans to succeed. Segregation wasn\'t just about not being able to vote or having separate schools. It was about having to step off the sidewalk to let a white person pass. None of these solid citizens say racism is over because too many black people are in desperate straits.</p>',
     artTextTwo: '',
     images: [
       {
@@ -215,6 +221,7 @@ var initialSeries = [
   {
     seriesName: "kano",
     seriesCaption: "Kano, Nigeria, 2010",
+    galleryNiceName: "Gallery For Kano, Nigeria 2010 Series",
     mainImgIdx: 0,
     artImgIdx: 2,
     artTitle: "IN KANO",
@@ -246,6 +253,7 @@ var initialSeries = [
   {
     seriesName: "grainmkt",
     seriesCaption: "Grain market, Kano, Nigeria",
+    galleryNiceName: "Gallery For Grain Market, Kano, Nigeria Series",
     mainImgIdx: 0,
     artImgIdx: 1,
     artTitle: "AT THE GRAIN MARKET",
@@ -287,7 +295,7 @@ var initialSeries = [
 var extraPages = [
   {
     pageName: "AboutMe",
-    textCol1: '<p><strong>&nbsp;MY PASSION FOR PHOTOGRAPHY DEVELOPED LATE IN LIFE.</strong>&nbsp; After getting a master\'s degree in Journalism from UC Berkeley I was a freelance writer, and magazine editor, publishing feature stories in national magazines (see list below).&nbsp; In l992 I wrote an adventure travel book (still in print) about a river trip that turned into a nightmare: “Shooting the Boh: One Woman\'s Voyage Down The Wildest River in Borneo."&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp; While writing my second book, "Peace In The House," about how polygamous marriages work in Northern Nigeria, I got a permanent case of repetitive stress in my hands. No more writing books. Not much writing at all. What to do?&nbsp; Fortunately I found an answer: Keep on exploring little known places\; keep on telling those stories,&nbsp; but do it now with a camera. This has allowed me to continue my adventures while learning to see things in a new way — up close and visual.&nbsp; In 2010, I went back to Nigeria as a photographer, but since then I\'ve been sticking closer to home — taking road trips but mostly exploring my own backyard: West Oakland.</p><p><em>*Published in New York Times Magazine, Village Voice, New West, Playboy, Ms., Redbook, Vogue, Cosmopolitan, Harper’s Bazaar, California, and many local newspapers and magazines. *Managing Editor of The Los Angeles Weekly; Northern California editor of California Magazine; Editor of The Berkeley Monthly; and Transitional Editor of San Francisco Magazine. </em></p>',
+    textCol1: '<p><strong>MY PASSION FOR PHOTOGRAPHY DEVELOPED LATE IN LIFE.</strong>&nbsp; After getting a master\'s degree in Journalism from UC Berkeley I was a freelance writer, and magazine editor, publishing feature stories in national magazines (see list below).&nbsp; In l992 I wrote an adventure travel book (still in print) about a river trip that turned into a nightmare: “Shooting the Boh: One Woman\'s Voyage Down The Wildest River in Borneo."</p><p> While writing my second book, "Peace In The House," about how polygamous marriages work in Northern Nigeria, I got a permanent case of repetitive stress in my hands. No more writing books. Not much writing at all. What to do?&nbsp; Fortunately I found an answer: Keep on exploring little known places\; keep on telling those stories,&nbsp; but do it now with a camera. This has allowed me to continue my adventures while learning to see things in a new way — up close and visual.&nbsp; In 2010, I went back to Nigeria as a photographer, but since then I\'ve been sticking closer to home — taking road trips but mostly exploring my own backyard: West Oakland.</p><p><em>*Published in New York Times Magazine, Village Voice, New West, Playboy, Ms., Redbook, Vogue, Cosmopolitan, Harper’s Bazaar, California, and many local newspapers and magazines. *Managing Editor of The Los Angeles Weekly; Northern California editor of California Magazine; Editor of The Berkeley Monthly; and Transitional Editor of San Francisco Magazine. </em></p>',
     textCol2: "",
     images: [
       {
@@ -394,8 +402,9 @@ var Series = function(data) {
   Only called when a gallery is actually selected by user.
 */
 
-var GalleryImage = function(imageData, seriesName) {
+var GalleryImage = function(imageData, seriesName, galleryNiceName) {
   this.seriesName = seriesName;
+  this.galleryNiceName = galleryNiceName;
   this.img = imageData.img;
   this.captionText = imageData.captionText;
   this.altText = imageData.altText;
@@ -419,7 +428,7 @@ var ViewModel = function() {
   this.contactIsVisible = ko.observable(false);
   this.longArtMainIsVisible = ko.observable(false);
 
-  this.homeLinkWasClicked = ko.observable(false);
+  this.homeLinkWasClicked = ko.observable(true);
   this.aboutmeLinkWasClicked = ko.observable(false);
   this.contactLinkWasClicked = ko.observable(false);
   this.articlesLinkWasClicked = ko.observable(false);
@@ -506,12 +515,10 @@ var ViewModel = function() {
   };
 
   self.clearLinkVisitedColor = function() {
-    console.log("x");
     self.homeLinkWasClicked(false);
     self.aboutmeLinkWasClicked(false);
     self.contactLinkWasClicked(false);
     self.articlesLinkWasClicked(false);
-    console.log("from clearAll: " + self.homeLinkWasClicked());
   };
 
   /*
@@ -526,7 +533,6 @@ var ViewModel = function() {
     self.mainIsVisible(true);
     self.currentSeries("");
     self.homeLinkWasClicked(true);
-    console.log("from showMain: " + self.homeLinkWasClicked());
   };
 
 
@@ -576,7 +582,7 @@ var ViewModel = function() {
       if (series.seriesName === self.currentSeries()) {
         series.images.forEach(function(image) {
           if (! /MAIN/.test(image.img)) {
-            self.galleryView.push(new GalleryImage(image, series.seriesName));
+            self.galleryView.push(new GalleryImage(image, series.seriesName, series.galleryNiceName));
           }
         });
       }

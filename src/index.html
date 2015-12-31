@@ -5,12 +5,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Kraken</title>
-  <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" rel='stylesheet'>
+  <!-- using import in CSS triggered a bug in gulp minifyCSS. so it is here. -->
+  <style>
+    @import url(http://weloveiconfonts.com/api/?family=zocial);
+  </style>
   <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400" rel='stylesheet'>
+  <link href="http://fonts.googleapis.com/css?family=Roboto:400,700" rel='stylesheet'>
+  <link href="http://fonts.googleapis.com/css?family=Varela+Round:400" rel='stylesheet'>
   <link href="css/bootstrap.css" rel="stylesheet">
-  <link href="css/font-awesome.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <script src="js/lib/knockout-3.2.0.js"></script>
+  <script src="js/lib/jquery-2.1.4.js"></script>
+  <script src="js/lib/bootstrap.js"></script>
 </head>
 <body>
 
@@ -25,7 +31,7 @@
        visible only below 768 and at that point it is hidden by the normal
        bootstrap navbar collapsed behavior. In effect: the li's don't show on top.
 
-       The "navbar-in-mobile" class reduces the margins and paddings of
+       ?? The "navbar-in-mobile" class reduces the margins and paddings of
        elements below 768px.  That improves readability on small devices. -->
 
         <nav class="navbar navbar-default visible-xs-block" id="navbar-in-mobile">
@@ -51,10 +57,10 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav navbar-right">
-                <li data-bind="click: showMain"><a href="#" data-toggle="collapse" data-target="#myNavbar">Home</a></li>
-                <li data-bind="click: showAboutme"><a href="#" data-toggle="collapse" data-target="#myNavbar">About Me</a></li>
-                <li data-bind="click: showContact"><a href="#" data-toggle="collapse" data-target="#myNavbar">Contact</a></li>
-                <li data-bind="click: showLongArtMain"><a href="#" data-toggle="collapse" data-target="#myNavbar">Articles</a></li>
+                <li data-bind="click: showMain, css: { navlinkclicked: homeLinkWasClicked() }"><a href="#" data-toggle="collapse" data-target="#myNavbar" class="nav-link-custom">Home</a></li>
+                <li data-bind="click: showAboutme, css: { navlinkclicked: aboutmeLinkWasClicked() }"><a href="#" data-toggle="collapse" data-target="#myNavbar" class="nav-link-custom">About Me</a></li>
+                <li data-bind="click: showContact, css: { navlinkclicked: contactLinkWasClicked() }"><a href="#" data-toggle="collapse" data-target="#myNavbar" class="nav-link-custom">Contact</a></li>
+                <li data-bind="click: showLongArtMain, css: { navlinkclicked: articlesLinkWasClicked() }"><a href="#" data-toggle="collapse" data-target="#myNavbar" class="nav-link-custom">Articles</a></li>
               </ul>
             </div>
 
@@ -70,7 +76,7 @@
         <h4 class="text-center header-subtitle-text">PHOTOGRAPHY & PROSE</h4>
     </header>
 
-    <!-- VISIBLE/EXPANDED NAVIGATION -->
+    <!-- BROWSER-SIZED NAVIGATION -->
 
     <!-- Clicks on links call the appropriate method in the view model. -->
     <!-- Note: navlinkclicked fails with knockout if it has hyphens in name -->
@@ -116,10 +122,11 @@
       </div>
       <div class="col-sm-7">
         <figure>
-          <a href="#"><img class="img-responsive" data-bind="attr: { src: artSrc, srcset: artSrcset, sizes: artSizes, alt: artAltText }, click: showGallery"></a>
-          <figcaption data-bind="text: artCaptionText"></figcaption>
+          <a href="#"><img class="img-responsive article-image" data-bind="attr: { src: artSrc, srcset: artSrcset, sizes: artSizes, alt: artAltText }, click: showGallery"></a>
+          <!-- figcaption data-bind="text: artCaptionText"></figcaption -->
+          <figcaption class="figcaption-article">Click Picture To View Gallery</figcaption>
         </figure>
-        <div data-bind="html: artTextTwo"></div>
+        <div class="artTextTwoBox" data-bind="html: artTextTwo"></div>
       </div>
     </section>
 
@@ -171,6 +178,10 @@
 	  <span class="sr-only">Next</span>
 	</a>
       </div>
+      
+      <div data-bind="if: galleryView().length > 0">
+        <div class="galleryNiceName text-center" data-bind="text: galleryView()[0].galleryNiceName"></div>
+      </div>
 
     </section>
 
@@ -183,7 +194,7 @@
       <div class="col-sm-5">
         <figure>
           <img class="img-responsive" data-bind="attr: { src: EPsrc1,  srcset: EPsrcset1, sizes: EPsizes1, alt: EPaltText1 }">
-          <figcaption data-bind="text: EPcaptionText1"></figcaption>
+          <figcaption class="figcaption-aboutme" data-bind="text: EPcaptionText1"></figcaption>
         </figure>
       </div>
     </section>
@@ -192,13 +203,13 @@
     <!-- CONTACT -->
 
     <section class="row" data-bind="visible: contactIsVisible">
-      <div class="col-sm-7">
+      <div class="col-sm-6">
         <figure>
           <img class="img-responsive" data-bind="attr: { src: EPsrc1,  srcset: EPsrcset1, sizes: EPsizes1, alt: EPaltText1 }">
           <figcaption data-bind="text: EPcaptionText1"></figcaption>
         </figure>
       </div>
-      <div class="col-sm-5" data-bind="html: EPtextCol1">
+      <div class="col-sm-6" data-bind="html: EPtextCol1">
       </div>
     </section>
 
@@ -208,7 +219,7 @@
     <section class="row" data-bind="visible: longArtMainIsVisible">
 
       <div class="col-sm-6">
-        <h2 data-bind="text: EPtitle1"><h2>
+        <h2 class="long-article-title" data-bind="text: EPtitle1"><h2>
         <div class="row">
           <div class="col-sm-6 article-text" data-bind="html: EPtextCol1"> </div>
 	  <div class="col-sm-6">
@@ -221,7 +232,7 @@
       </div>
 
       <div class="col-sm-6">
-        <h2 data-bind="text: EPtitle2"><h2>
+        <h2 class="long-article-title" data-bind="text: EPtitle2"><h2>
         <div class="row">
           <div class="col-sm-6 article-text" data-bind="html: EPtextCol2"> </div>
 	  <div class="col-sm-6">
@@ -234,14 +245,31 @@
       </div>
 
     </section>
+    <!-- Footer -->
+
+    <footer class="row text-center">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-2">
+        <a href="http://twitter.com" class="zocial-twitter"></a>
+      </div>
+      <div class="col-xs-2">
+        <a href="http://flickr.com" class="zocial-flickr"></a>
+      </div>
+      <div class="col-xs-2">
+        <a href="http://facebook.com/tifred.torres" class="zocial-facebook"></a>
+      </div>
+      <div class="col-xs-2">
+        <a href="http://instagram.com/" class="zocial-instagram"></a>
+      </div>
+      <div class="col-xs-2"></div>
+    </footer>
 
   </div> <!-- END CONTAINER -->
 
   <!-- Libraries -->
-  <script src="js/lib/jquery-2.1.4.js"></script>
-  <script src="js/lib/bootstrap.js"></script>
 
   <!-- Local JavaScript Files -->
   <script src="js/app.js"></script>
+
 </body>
 </html>

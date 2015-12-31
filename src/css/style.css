@@ -1,12 +1,33 @@
-body {
-  background-color: #a1a1a1;
+/* zocial */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+  font-size: 30px;
+  transition: font-size 2s;
+  color: #D5DBE6;
 }
 
+body {
+  background-color: #a1a1a1;
+  color: #000;
+}
+
+/*
 * {
   font-family: PT Sans, sans-serif;
   font-weight: 400;
   margin-top: 5px;
 }
+*/
+
+* {
+  font-family: "Roboto";
+  font-size: 16px;
+  line-height: 1.6em;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 5px;
+}
+
 
 .header-title-text {
   color: #061603;
@@ -43,8 +64,27 @@ body {
   color: #936969;
 }
 
+.navbar-default .navbar-nav > li > a.nav-link-custom {
+  color: #5a0202;
+  font-size: 12px;
+  line-height: .1em;
+}
+
+.navbar-default .navbar-nav > li > a.nav-link-custom:hover {
+  color: #936969;
+}
+
+
 .navlinkclicked {
   color: #f6eaea;
+}
+
+.navbar-default .navbar-nav > li.navlinkclicked > a {
+  color: #f6eaea;
+}
+
+.navbar-default .navbar-nav > li:last-child > a.nav-link-custom {
+  padding-bottom: 0px;
 }
 
 #main-container {
@@ -53,17 +93,32 @@ body {
 
 .figcaption-main-page {
   margin-top: 3px;
+  margin-bottom: 10px;
   color: #000;
   font-size: 12px;
 }
 
-
-.article-text {
-  font-size: 16px;
+.galleryNiceName {
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 20px;
 }
 
 .article-title {
   margin-bottom: 40px;
+}
+
+.article-image {
+  margin-top: 20px;
+}
+
+.artTextTwoBox {
+  margin-top: 15px;
+}
+
+.figcaption-article,
+.figcaption-aboutme {
+  font-style: italic;
 }
 
 .menu-button {
@@ -73,6 +128,18 @@ body {
   margin-right: 2px;
 }
 
+.long-article-title {
+  font-family: "Varela Round", sans-serif;
+  font-size: 30px;
+  line-height: 1.3em;
+  letter-spacing: 0px;
+  font-style: normal;
+}
+
+footer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 @media only screen and (max-width: 768px) {
   #header-in-mobile {
@@ -86,8 +153,21 @@ body {
     margin-bottom: 2px;
     padding-left: 12px;
   }
+  #navbar-in-mobile {
+    background-color: #a1a1a1;
+    border-color: #a1a1a1;
+    margin-bottom: 2px;
+    margin-top: 0px;
+  }
+  #header-large-div {
+    margin-top: 0px;
+  }
 }
 
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+}
+
+// This prevents the menu icon from disappearing if you resize in a lot.
 @media only screen and (max-width: 468px) {
   #header-large-div {
     width: 83.33333333%;
@@ -97,7 +177,7 @@ body {
   }
 }
 
-// The reverse case:
+// This restores the initial widths if you resize back out.
 @media only screen and (min-width: 468px) {
   #header-large-div {
     width: 91.66666667%;
@@ -106,3 +186,4 @@ body {
     width: 8.33333333%;
   }
 }
+
